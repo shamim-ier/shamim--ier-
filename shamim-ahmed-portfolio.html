@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shamim Ahmed — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    --paper: #F5F6F0;
+    --paper-shade: #ECEEE3;
+    --ink: #232A22;
+    --ink-soft: #4B5346;
+    --forest: #2F4538;
+    --forest-deep: #1D2C22;
+    --marigold: #CE8A2C;
+    --marigold-soft: #E7C88F;
+    --rule: rgba(35,42,34,0.18);
+    --radius: 2px;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  :root:not([data-theme="light"]) {
+    /* keep a single warm-paper look regardless of system theme, per design intent */
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  html, body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--forest-deep);
+    margin: 0;
+  }
+  a { color: var(--forest-deep); }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---- nav ---- */
+  nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    background: rgba(245,246,240,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+  nav .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px; padding-bottom: 16px;
+  }
+  .nav-name { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: var(--forest-deep); text-decoration: none; }
+  .nav-links { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+  .nav-links a { font-size: 0.92rem; text-decoration: none; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--forest-deep); }
+  .nav-toggle { display: none; }
+
+  /* ---- hero ---- */
+  header.hero {
+    padding: 96px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .wrap { display: grid; grid-template-columns: 1.4fr 0.9fr; gap: 48px; align-items: end; }
+  .eyebrow-mark {
+    display: inline-block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--marigold);
+    margin-bottom: 18px;
+  }
+  .hero h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); line-height: 1.03; }
+  .hero .role {
+    margin-top: 22px;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+  .hero-figure { justify-self: end; text-align: right; }
+  .hero-photo {
+    width: 168px; height: 168px; border-radius: 50%;
+    object-fit: cover; margin-left: auto;
+    border: 3px solid var(--paper);
+    outline: 1px solid var(--rule);
+  }
+  .hero-loc { margin-top: 14px; font-size: 0.92rem; color: var(--ink-soft); }
+
+  .ruled {
+    border: none; border-top: 1px solid var(--rule); margin: 0;
+  }
+
+  section { padding: 64px 0; }
+  section.shade { background: var(--paper-shade); }
+  .kicker {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+    color: var(--marigold); font-size: 1.05rem; margin-bottom: 6px; display: block;
+  }
+  h2.section-title { font-size: clamp(1.7rem, 3.4vw, 2.3rem); max-width: 24ch; }
+
+  /* ---- about ---- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 28px; }
+  .about-grid p { color: var(--ink-soft); }
+  .field-list { list-style: none; margin: 0; padding: 0; }
+  .field-list li {
+    display: flex; justify-content: space-between; gap: 16px;
+    padding: 11px 0; border-top: 1px solid var(--rule);
+    font-size: 0.95rem;
+  }
+  .field-list li:last-child { border-bottom: 1px solid var(--rule); }
+  .field-list dt { color: var(--ink-soft); }
+  .field-list dd { margin: 0; text-align: right; font-weight: 600; color: var(--forest-deep); }
+
+  /* ---- timeline (education is a genuine sequence) ---- */
+  .timeline { margin-top: 36px; }
+  .t-row {
+    display: grid; grid-template-columns: 56px 1fr auto; gap: 20px;
+    padding: 26px 0; border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .t-row:last-child { border-bottom: 1px solid var(--rule); }
+  .t-num {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.4rem; color: var(--marigold-soft);
+    -webkit-text-stroke: 1px var(--marigold);
+  }
+  .t-body h3 { font-size: 1.15rem; font-weight: 600; }
+  .t-body .t-inst { color: var(--ink-soft); font-size: 0.95rem; margin-top: 4px; }
+  .t-when { text-align: right; white-space: nowrap; }
+  .t-year { font-family: 'Fraunces', serif; font-weight: 600; color: var(--forest-deep); }
+  .t-result { display: block; font-size: 0.85rem; color: var(--ink-soft); margin-top: 3px; }
+
+  /* ---- experience / practice ---- */
+  .practice-card {
+    border: 1px solid var(--rule);
+    padding: 30px 32px;
+    margin-top: 28px;
+    position: relative;
+  }
+  .practice-card::before {
+    content: "";
+    position: absolute; left: 0; top: 22px; bottom: 22px; width: 3px;
+    background: var(--marigold);
+  }
+  .practice-card h3 { font-size: 1.25rem; }
+  .practice-card p { color: var(--ink-soft); margin-top: 10px; max-width: 62ch; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .tag {
+    font-size: 0.82rem; border: 1px solid var(--rule); padding: 5px 12px;
+    color: var(--ink-soft); font-family: 'Karla', sans-serif;
+  }
+
+  /* ---- skills / training two-column ---- */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px; }
+  .skill-block h3 { font-size: 1.05rem; margin-bottom: 14px; }
+  .lang-row { display: flex; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--rule); font-size: 0.92rem; }
+  .lang-row:last-child { border-bottom: 1px solid var(--rule); }
+  .lang-levels { display: flex; gap: 14px; color: var(--ink-soft); }
+  .train-item { padding: 10px 0; border-top: 1px solid var(--rule); font-size: 0.92rem; }
+  .train-item:last-child { border-bottom: 1px solid var(--rule); }
+  .train-item strong { color: var(--forest-deep); }
+
+  /* ---- goals band ---- */
+  .goals-band { background: var(--forest-deep); color: var(--paper); }
+  .goals-band .kicker { color: var(--marigold-soft); }
+  .goals-band h2 { color: var(--paper); }
+  .goals-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 32px; }
+  .goal-item .label { font-size: 0.82rem; color: var(--marigold-soft); margin-bottom: 6px; }
+  .goal-item .value { font-family: 'Fraunces', serif; font-size: 1.15rem; }
+  .goals-band p.lead { max-width: 58ch; color: rgba(245,246,240,0.82); margin-top: 18px; }
+
+  /* ---- contact ---- */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 32px; }
+  .contact-item {
+    border: 1px solid var(--rule); padding: 20px 22px;
+  }
+  .contact-item .label { font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 6px; }
+  .contact-item a, .contact-item span.value { font-weight: 600; color: var(--forest-deep); text-decoration: none; word-break: break-word; }
+
+  footer { padding: 40px 0 56px; text-align: center; color: var(--ink-soft); font-size: 0.85rem; }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-figure { justify-self: start; text-align: left; }
+    .hero-photo { margin-left: 0; }
+    .about-grid, .skills-grid, .contact-grid { grid-template-columns: 1fr; }
+    .goals-grid { grid-template-columns: 1fr; }
+    .t-row { grid-template-columns: 40px 1fr; }
+    .t-when { grid-column: 2; text-align: left; margin-top: 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  :focus-visible { outline: 2px solid var(--marigold); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="nav-name" href="#top">Shamim Ahmed</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#practice">Teaching</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow-mark">Curriculum &amp; Instructional Technology</span>
+      <h1>Shamim<br>Ahmed</h1>
+      <p class="role">A master's student at the Institute of Education and Research, University of Dhaka, working toward classrooms — and NGOs — that teach mathematics more clearly and reach more students across Bangladesh.</p>
+    </div>
+    <div class="hero-figure">
+      <div class="hero-loc">Dhaka, Bangladesh</div>
+    </div>
+  </div>
+</header>
+<hr class="ruled">
+
+<section id="about">
+  <div class="wrap">
+    <span class="kicker">About</span>
+    <h2 class="section-title">Education as the way to improve education</h2>
+    <div class="about-grid">
+      <p>Currently completing an M.Ed. in Curriculum and Instructional Technology at IER, part of the 27th batch (2025 session). The direction is deliberate: understand how curricula and teaching methods are built, then put that understanding to work in classrooms and development organisations that need it.</p>
+      <dl class="field-list">
+        <li><dt>Programme</dt><dd>M.Ed., Curriculum &amp; Instructional Technology</dd></li>
+        <li><dt>Institution</dt><dd>IER, University of Dhaka</dd></li>
+        <li><dt>Batch / Session</dt><dd>27th, 2025</dd></li>
+        <li><dt>Student ID</dt><dd>25-595</dd></li>
+        <li><dt>Looking toward</dt><dd>Education &amp; NGO / Development roles</dd></li>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="shade" id="education">
+  <div class="wrap">
+    <span class="kicker">Academic record</span>
+    <h2 class="section-title">Path through school and university</h2>
+    <div class="timeline">
+      <div class="t-row">
+        <div class="t-num">01</div>
+        <div class="t-body">
+          <h3>M.Ed., Curriculum &amp; Instructional Technology <em style="font-style:italic; color:var(--ink-soft); font-weight:400;">— in progress</em></h3>
+          <div class="t-inst">Institute of Education and Research, University of Dhaka</div>
+        </div>
+        <div class="t-when"><span class="t-year">2025 —</span></div>
+      </div>
+      <div class="t-row">
+        <div class="t-num">02</div>
+        <div class="t-body">
+          <h3>Bachelor of Education (B.Ed.), Education</h3>
+          <div class="t-inst">Institute of Education and Research, University of Dhaka</div>
+        </div>
+        <div class="t-when">
+          <span class="t-year">2024</span>
+          <span class="t-result">3.44 / 4.00</span>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-num">03</div>
+        <div class="t-body">
+          <h3>Higher Secondary Certificate, Arts</h3>
+          <div class="t-inst">Tamirul Millat Kamil Madrasha</div>
+        </div>
+        <div class="t-when">
+          <span class="t-year">2020</span>
+          <span class="t-result">GPA 5.00 / 5.00</span>
+        </div>
+      </div>
+      <div class="t-row">
+        <div class="t-num">04</div>
+        <div class="t-body">
+          <h3>Secondary School Certificate, Arts</h3>
+          <div class="t-inst">Tamirul Millat Kamil Madrasah</div>
+        </div>
+        <div class="t-when">
+          <span class="t-year">2018</span>
+          <span class="t-result">GPA 5.00 / 5.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="wrap">
+    <span class="kicker">In the classroom</span>
+    <h2 class="section-title">Teaching practice</h2>
+    <div class="practice-card">
+      <h3>Class 8 Mathematics</h3>
+      <p>Around six months assisting with mathematics teaching for Class 8, working across both NCTB and madrasa curricula — moving between two syllabi that ask for slightly different framing of the same ideas.</p>
+      <div class="tag-row">
+        <span class="tag">NCTB curriculum</span>
+        <span class="tag">Madrasa curriculum</span>
+        <span class="tag">Mathematics, Grade 8</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shade" id="skills">
+  <div class="wrap">
+    <span class="kicker">Tools &amp; language</span>
+    <h2 class="section-title">Skills and training</h2>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h3>Training</h3>
+        <div class="train-item"><strong>Microsoft Office</strong> — Word, Excel, PowerPoint<br><span style="color:var(--ink-soft); font-size:0.88rem;">Institute of Education and Research · Dhaka · 2023 · 25 hours</span></div>
+      </div>
+      <div class="skill-block">
+        <h3>English proficiency</h3>
+        <div class="lang-row"><span>Reading</span><span class="lang-levels">High</span></div>
+        <div class="lang-row"><span>Writing</span><span class="lang-levels">High</span></div>
+        <div class="lang-row"><span>Speaking</span><span class="lang-levels">Medium</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="goals-band">
+  <div class="wrap">
+    <span class="kicker">Looking ahead</span>
+    <h2 class="section-title">What I'm looking for</h2>
+    <p class="lead">An organisation — school or NGO — where curriculum design, teaching, and communication meet, and where the work moves the needle on education quality in Bangladesh.</p>
+    <div class="goals-grid">
+      <div class="goal-item"><div class="label">Preferred field</div><div class="value">Education / Training, NGO / Development</div></div>
+      <div class="goal-item"><div class="label">Location</div><div class="value">Anywhere in Bangladesh</div></div>
+      <div class="goal-item"><div class="label">Organisation type</div><div class="value">NGO, Education</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <span class="kicker">Get in touch</span>
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="label">Email</div>
+        <a href="mailto:shamimahmedierdu27@gmail.com">shamimahmedierdu27@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="label">Phone</div>
+        <span class="value">01608443167 · 01793633063</span>
+      </div>
+      <div class="contact-item">
+        <div class="label">Location</div>
+        <span class="value">Bangsal, Dhaka, Bangladesh</span>
+      </div>
+      <div class="contact-item">
+        <div class="label">Facebook</div>
+        <a href="https://www.facebook.com/share/1E7gHWLVHA/" target="_blank" rel="noopener">View profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Shamim Ahmed · IER, University of Dhaka
+</footer>
+
+</body>
+</html>
